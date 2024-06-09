@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Button } from '@mui/material';
 
 export default async function AuthButton() {
   const supabase = createClient();
@@ -18,20 +19,20 @@ export default async function AuthButton() {
   };
 
   return user ? (
-    <div className="flex items-center gap-4">
-      Hey, {user.email}!
-      <form action={signOut}>
-        <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-          Logout
-        </button>
-      </form>
-    </div>
+    <form action={signOut}>
+      <Button
+        type="submit"
+        variant="text"
+        style={{ color: 'white' }} // Customize your color here
+      >
+        Logout
+      </Button>
+    </form>
   ) : (
-    <Link
-      href="/login"
-      className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-    >
-      Login
+    <Link href="/login" passHref>
+      <Button variant="text" style={{ color: 'white' }}>
+        Login
+      </Button>
     </Link>
   );
 }

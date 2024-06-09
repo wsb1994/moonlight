@@ -40,17 +40,7 @@ export default async function ProtectedPage() {
       </AppBar>
       <Container maxWidth="sm">
         <Box sx={{ my: 4, textAlign: 'center' }}>
-          <Typography variant="h2" component="h1" gutterBottom>
-            Welcome to MyApp
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            This is a protected page that requires authentication.
-          </Typography>
-          <div className="user-data">
-            <h2>User Data</h2>
-            <pre>{JSON.stringify(user.id, null, 2)}</pre>
-            <Company />
-          </div>
+          
         </Box>
       </Container>
     </>
