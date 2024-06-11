@@ -1,8 +1,9 @@
 
 // pages/index.js
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, Container, Box, Typography, Button, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import Submission from '@/components/Submission';
 import Head from 'next/head';
 import AuthButton from '@/components/AuthButton';
 export default function Home() {
@@ -27,14 +28,12 @@ export default function Home() {
       <Container maxWidth="sm">
         <Box sx={{ my: 4, textAlign: 'center' }}>
           <Typography variant="body1" gutterBottom>
-            This is an application for finding out how to reach your bank or another company's phone line, email line, or similar, and get customer support from a real live human being, skipping the ai shit storm.
+            Input a corporate phone number below to determine if there is a "shortcut" to contact a person on that particular phone line, or to see if there is a corporate helpdesk email, etc.
           </Typography>
           <Link>
-          <Button variant="contained" color="inherit">
-            Click here to get started
-          </Button>
           </Link>
         </Box>
+        <Submission></Submission>
       </Container>
     </>
   );

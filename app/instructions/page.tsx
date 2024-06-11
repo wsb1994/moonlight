@@ -1,8 +1,3 @@
-import { useRouter } from 'next/navigation'
- 
-export default function Page(number: string) {
-  const router = useRouter()
-  return (
-    <>{{number}}</>
-  )
+export default function Page({ params }: { params: { slug: string } }) {
+  return <div>My Post: {params.slug}</div>
 }

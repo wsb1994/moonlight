@@ -1,33 +1,32 @@
 // components/Instruction.jsx
 import React from 'react';
 import { createClient } from '@/utils/supabase/server';
-import { Card } from '@mui/material';
+import { Card, Box } from '@mui/material';
 
 async function Instruction( params ) {
 
 const supabase = createClient();
-  const { data: instruction } = (await supabase.from("instructions").select().eq('id', 1).limit(1));
-
+  // const { data: instruction } = (await supabase.from("instructions").select().eq('number', params.number).limit(1));
+  const instruction = params.instruction;
   // Use number prop here
   return <pre>
     <div>
-    {JSON.stringify(instruction, null, 2)}
+    <Box sx={{ m: 4 }}>
     <Card>
     <div>
-        {instruction && instruction.map((item) => {
-          return <div>
-            <div> Company: {item.common_name}</div>
-            <div> Department: {item.department}</div>
-            <div> Number: {item.number}</div>
+<div>
+            <div> Company: {instruction.common_name}</div>
+            <div> Department: {instruction.department}</div>
+            <div> Number: {instruction.number}</div>
             <ul>
-                      {item.instructions.map((instruction, index) => (
+                      {instruction.instructions.map((instruction, index) => (
                         <li key={index}> {index + 1 }: {instruction}</li>
                       ))}
                     </ul>
-            </div>;
-        })}
+            </div>
       </div>
       </Card>
+      </Box>
     </div>
     </pre>
 }
