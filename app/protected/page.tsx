@@ -29,6 +29,8 @@ export default async function ProtectedPage() {
   return (
     <>
       <Head>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6138466841150942"
+     crossOrigin="anonymous"></script>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <link rel="icon" href="/favicon.ico" />
