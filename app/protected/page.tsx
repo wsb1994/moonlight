@@ -2,11 +2,10 @@
 import { redirect } from 'next/navigation';
  import { createClient } from "@/utils/supabase/server";
 import AuthButton from '@/components/AuthButton';
-import Company from '@/components/Company';
 import { Container, Box, Typography, AppBar, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Head from 'next/head';
-
+import CompanyLink from '@/components/CompanyLink'
 export const metadata = {
   title: 'Protected Page',
   description: 'A protected page that requires authentication',
@@ -16,6 +15,8 @@ export default async function ProtectedPage() {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  const { data: companies } = await supabase.from("companies").select().order('common_name', { ascending: false });;
+  console.log(companies)
   if (!user) {
     return redirect('/login');
   }
@@ -40,18 +41,13 @@ export default async function ProtectedPage() {
       </AppBar>
       <Container maxWidth="sm">
         <Box sx={{ my: 4, textAlign: 'center' }}>
-          <Typography variant="h2" component="h1" gutterBottom>
-            Welcome to MyApp
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            This is a protected page that requires authentication.
-          </Typography>
-          <div className="user-data">
-            <h2>User Data</h2>
-            <pre>{JSON.stringify(user.id, null, 2)}</pre>
-            <Company />
-          </div>
-        </Box>
+        <ul>
+        {companies && companies.map((company, index) => (
+      <CompanyLink company={company}/>
+    ))}
+  </ul>
+  </Box>
+  
       </Container>
     </>
   );

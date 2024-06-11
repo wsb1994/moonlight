@@ -14,14 +14,6 @@ export default async function Page({ params }) {
   const { data: { user } } = await supabase.auth.getUser();
   const { data: instructions } = (await supabase.from("instructions").select().eq('number', slug));
 
-  console.log(instructions)
-  
-  // return (
-  //   <div>
-  //     <Instruction number={slug}></Instruction>
-  //   </div>
-  // );
-
   return (
     <ul>
     {instructions.map((instruction, index) => (

@@ -7,28 +7,34 @@ async function Instruction( params ) {
 
 const supabase = createClient();
   // const { data: instruction } = (await supabase.from("instructions").select().eq('number', params.number).limit(1));
-  const instruction = params.instruction;
-  // Use number prop here
-  return <pre>
-    <div>
-    <Box sx={{ m: 4 }}>
-    <Card>
-    <div>
-<div>
+  const instruction = params.instruction; 
+  let { data } = await supabase.rpc('sum_votes', { idn: instruction.id });
+   
+   if (data[0].total === null){
+    data[0].total = 0
+  }
+  
+  if (data[0].total < -5) {
+    return;
+  }
+
+    return (
+      <pre>
+        <Box sx={{ m: 6 }}>
+          <Card>
+            <div> Score: {data[0].total} </div>
             <div> Company: {instruction.common_name}</div>
             <div> Department: {instruction.department}</div>
             <div> Number: {instruction.number}</div>
             <ul>
-                      {instruction.instructions.map((instruction, index) => (
-                        <li key={index}> {index + 1 }: {instruction}</li>
-                      ))}
-                    </ul>
-            </div>
-      </div>
-      </Card>
-      </Box>
-    </div>
-    </pre>
+              {instruction.instructions.map((instruction, index) => (
+                <li key={index}> {index + 1}: {instruction}</li>
+              ))}
+            </ul>
+          </Card>
+        </Box>
+      </pre>
+    );
 }
 
 export default Instruction;
