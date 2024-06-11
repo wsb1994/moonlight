@@ -1,6 +1,5 @@
 // components/Instruction.jsx
 import React from 'react';
-import { FormEvent } from 'react'
 import { createClient } from '@/utils/supabase/server';
 import { Card, Box, IconButton, Button, Icon } from '@mui/material';
 import { ArrowUpward, ArrowDownward} from '@mui/icons-material';
@@ -29,17 +28,7 @@ async function onSubmit(event) {
     return (
       <pre>
         <Box sx={{ m: 6 }}>
-          <Card>
-            <div> 
-            <form onSubmit={onSubmit}>
-              <ArrowUpward />
-              </form>
-                   {data[0].total} 
-                   <IconButton>
-              <ArrowDownward />
-            </IconButton>
-              </div>
-              <IconButton></IconButton>
+          <Card sx={{ padding: '20px' }}>  
             <div> Company: {instruction.common_name}</div>
             <div> Department: {instruction.department}</div>
             <div> Number: {instruction.number}</div>

@@ -16,16 +16,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: .25 }}>
           The Person Project
           </Typography>
-          <Link href={`/companylist`}>
-                Instructions for this Phone Line Exist
-                </Link>
+          <Typography variant="h6" component="div" sx={{ flexGrow: .75 }}>
+          <Link href="/companylist"  color="inherit" sx={{ textDecoration: 'underline' }}>
+        Company List
+      </Link>
+          </Typography>
           <AuthButton/> 
         </Toolbar>
-      </AppBar>
+          </AppBar>
       <Container maxWidth="sm">
         <Box sx={{ my: 4, textAlign: 'center' }}>
           <Typography variant="body1" gutterBottom>

@@ -6,6 +6,8 @@ import { Container, Box, Typography, AppBar, Toolbar, IconButton } from '@mui/ma
 import MenuIcon from '@mui/icons-material/Menu';
 import Head from 'next/head';
 import CompanyLink from '@/components/CompanyLink'
+import Link from '@mui/material/Link'
+
 export const metadata = {
   title: 'Protected Page',
   description: 'A protected page that requires authentication',
@@ -32,11 +34,19 @@ export default async function ProtectedPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppBar position="static">
-        <Toolbar>
+      <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           The Person Project
           </Typography>
-          <AuthButton />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Link href="/companylist"  color="inherit" sx={{ textDecoration: 'underline' }}>
+        Company List
+      </Link>
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          All Instructions
+          </Typography> 
+          <AuthButton/> 
         </Toolbar>
       </AppBar>
       <Container maxWidth="sm">

@@ -35,12 +35,17 @@ export default async function Companies({ params }) {
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <AppBar position="static">
-            <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              The Person Project
-              </Typography>
-              <AuthButton/>
-            </Toolbar>
+          <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: .25 }}>
+          The Person Project
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: .75 }}>
+          <Link href="/companylist"  color="inherit" sx={{ textDecoration: 'underline' }}>
+        Company List
+      </Link>
+          </Typography>
+          <AuthButton/> 
+        </Toolbar>
           </AppBar>
           <Container maxWidth="sm">
             <Box sx={{ my: 4, textAlign: 'center' }}>
