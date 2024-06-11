@@ -1,8 +1,8 @@
 // components/Instruction.jsx
 import React from 'react';
 import { createClient } from '@/utils/supabase/server';
-import { Card, Box } from '@mui/material';
-
+import { Card, Box, IconButton, Button, Icon } from '@mui/material';
+import { ArrowUpward, ArrowDownward} from '@mui/icons-material';
 async function Instruction( params ) {
 
 const supabase = createClient();
@@ -15,6 +15,7 @@ const supabase = createClient();
   }
   
   if (data[0].total < -5) {
+    const { data: result } = await supabase.from("instructions").delete("*").eq('id', instruction.id);
     return;
   }
 
@@ -22,7 +23,16 @@ const supabase = createClient();
       <pre>
         <Box sx={{ m: 6 }}>
           <Card>
-            <div> Score: {data[0].total} </div>
+            <div> 
+              <IconButton>
+                <ArrowUpward/>
+                </IconButton>
+                   {data[0].total} 
+                   <IconButton>
+                <ArrowDownward/>
+                </IconButton>
+              </div>
+              <IconButton></IconButton>
             <div> Company: {instruction.common_name}</div>
             <div> Department: {instruction.department}</div>
             <div> Number: {instruction.number}</div>
