@@ -20,6 +20,9 @@ export default async function ProtectedPage() {
   if (!user) {
     return redirect('/login');
   }
+  if (user){
+    return redirect('/companylist');
+  }
 
   return (
     <>
@@ -30,24 +33,14 @@ export default async function ProtectedPage() {
       </Head>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            MyApp
+          The Person Project
           </Typography>
           <AuthButton />
         </Toolbar>
       </AppBar>
       <Container maxWidth="sm">
-        <Box sx={{ my: 4, textAlign: 'center' }}>
-        <ul>
-        {companies && companies.map((company, index) => (
-      <CompanyLink company={company}/>
-    ))}
-  </ul>
-  </Box>
-  
+   
       </Container>
     </>
   );

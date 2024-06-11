@@ -15,22 +15,11 @@ import Submission from '@/components/Submission';
 import { createClient } from '@/utils/supabase/server';
 import CompanyLink from '@/components/CompanyLink';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export default async function DenseTable() {
+export default async function Companies({ params }) {
+  const { slug } = params;
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
-  const { data: companies } = await supabase.from("companies").select().order('common_name', { ascending: false });
+  const { data: instructions } = (await supabase.from("numbers").select().eq('parent_uuid', slug));
 
   const handleLinkClick = (e, companyName) => {
     e.preventDefault();
@@ -61,29 +50,28 @@ export default async function DenseTable() {
         <TableHead>
           <TableRow>
             <TableCell>Company Name</TableCell>
-            <TableCell align="Left">Support</TableCell>
-            <TableCell align="Left">Website&nbsp;(g)</TableCell>
-            <TableCell align="Left">Supported Numbers</TableCell>
+            <TableCell align="Left">Number</TableCell>
+            <TableCell align="Left">Instructions</TableCell>
    
           </TableRow>
         </TableHead>
         <TableBody>
-          {companies.map((company, index) => (
+          {instructions.map((instruction, index) => (
             <TableRow
-              key={company.common_name}
+              key={instruction.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <CompanyLink params={company}/>
+                {instruction.common_name}
               </TableCell>
-              <TableCell align="Left">{company.supported}</TableCell>
-              <TableCell align="Left">
-                <Link href={company.website}>
-                {company.common_name}
+              <TableCell component="th" scope="row">
+                {instruction.number}
+              </TableCell>
+              <TableCell component="th" scope="row">
+              <Link href={`/instructions/${instruction.number}`}>
+                Instructions for this Phone Line Exist
                 </Link>
-                </TableCell>
-              <TableCell align="Left">?</TableCell>
-              
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
