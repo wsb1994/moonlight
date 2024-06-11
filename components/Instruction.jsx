@@ -1,5 +1,6 @@
 // components/Instruction.jsx
 import React from 'react';
+import { FormEvent } from 'react'
 import { createClient } from '@/utils/supabase/server';
 import { Card, Box, IconButton, Button, Icon } from '@mui/material';
 import { ArrowUpward, ArrowDownward} from '@mui/icons-material';
@@ -10,13 +11,19 @@ const supabase = createClient();
   const instruction = params.instruction; 
   let { data } = await supabase.rpc('sum_votes', { idn: instruction.id });
    
+
+async function onSubmit(event) {
+  const { data: { user } } = await supabase.auth.getUser();
+  const {result} = await supabase.from('votes').upsert({id: instruction.id, number: instruction.number, vote: number, voter: user.id})
+
+}
+
    if (data[0].total === null){
     data[0].total = 0
   }
   
   if (data[0].total < -5) {
     const { data: result } = await supabase.from("instructions").delete("*").eq('id', instruction.id);
-    return;
   }
 
     return (
@@ -24,13 +31,13 @@ const supabase = createClient();
         <Box sx={{ m: 6 }}>
           <Card>
             <div> 
-              <IconButton>
-                <ArrowUpward/>
-                </IconButton>
+            <form onSubmit={onSubmit}>
+              <ArrowUpward />
+              </form>
                    {data[0].total} 
                    <IconButton>
-                <ArrowDownward/>
-                </IconButton>
+              <ArrowDownward />
+            </IconButton>
               </div>
               <IconButton></IconButton>
             <div> Company: {instruction.common_name}</div>

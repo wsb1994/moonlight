@@ -29,6 +29,7 @@ export default async function Companies({ params }) {
     return (
         <>
           <Head>
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6138466841150942" crossOrigin="anonymous"></script>
             <title>Material UI with Next.js</title>
             <meta name="description" content="A beautiful Material UI page with Next.js" />
             <link rel="icon" href="/favicon.ico" />

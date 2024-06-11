@@ -1,5 +1,4 @@
 // app/instructions/[slug]/[slug].jsx
-
 import Instruction from "@/components/Instruction";
 import { createClient } from "@/utils/supabase/server";
 
