@@ -68,7 +68,7 @@ export default async function DenseTable() {
           <TableRow>
             <TableCell>Company Name</TableCell>
             <TableCell align="Left">Support</TableCell>
-            <TableCell align="Left">Website&nbsp;(g)</TableCell>
+            <TableCell align="Left">Website</TableCell>
             <TableCell align="Left">Supported Numbers</TableCell>
    
           </TableRow>
