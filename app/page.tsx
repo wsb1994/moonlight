@@ -31,7 +31,7 @@ export default function Home() {
       <Container maxWidth="sm">
         <Box sx={{ my: 4, textAlign: 'center' }}>
           <Typography variant="body1" gutterBottom>
-            Input a corporate phone number below to determine if there is a "shortcut" to contact a person on that particular phone line, or to see if there is a corporate helpdesk email, etc.
+            Input a corporate phone number below to determine if there is a "shortcut" to contact a person on that particular phone line, or to see if there is a corporate helpdesk email, etc. This is a bit janky, so for now I recommend using the app bar's company list.
           </Typography>
           <Link>
           </Link>
