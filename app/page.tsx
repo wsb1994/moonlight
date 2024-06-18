@@ -31,12 +31,10 @@ export default function Home() {
       <Container maxWidth="sm">
         <Box sx={{ my: 4, textAlign: 'center' }}>
           <Typography variant="body1" gutterBottom>
-            Input a corporate phone number below to determine if there is a "shortcut" to contact a person on that particular phone line, or to see if there is a corporate helpdesk email, etc. This is a bit janky, so for now I recommend using the app bar's company list.
-          </Typography>
+  Phone search is currently disabled as we prepare to launch crowd sourcing. We are taking fraud seriously, and are using a special method to prevent fraudelent entries. Until this is turned on, search + submission as well as crowd sourcing are disabled.          </Typography>
           <Link>
           </Link>
         </Box>
-        <Submission></Submission>
       </Container>
     </>
   );
